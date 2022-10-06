@@ -30,7 +30,7 @@ function newItem() {
     return;
   }
   var createdList = document.querySelector("ul");       // find unordered list of tasks
-  var child = `<li><a class='moveSymbol'> = </a><input type='checkbox' name='checkbox'><label for='checkbox'>${item}</label><a> X </a></li>` // html to add a new item to the unordered list
+  var child = `<li><a class='moveSymbol'> = </a><input type='checkbox' name='checkbox'><label for='checkbox'>${item}</label><span> X </span></li>` // html to add a new item to the unordered list
   var newChild = new DOMParser().parseFromString(child, "text/html")
   createdList.appendChild(newChild.body.firstChild);    // find last list item, add new list item
   inputText.value = "";                                 // erase text in input text box
@@ -46,6 +46,10 @@ function deleteli(e) {
 }
 
 // MOVE AND DRAG FUNCTION
+function onDragStart(event) {
+  event.dataTransfer.setData('text/plain', event.target.id)
+}
+
 
 // EDIT ALREADY CREATED TASKS
 
