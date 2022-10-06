@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What ever this will be</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="main.js"></script>
+</head>
+<body>
+    <section>
+        <h1>To Do List</h1>
+        <!-- Entry box -->
+        <label class='newTask'>New Task:</label>
+        <input placeholder='Task Name' type='text'></input>
+        <!-- add button -->
+        <button> ADD</button>
+      </section>
+      
+      <section>
+        <!-- Unordered list -->
+        <ul id='listname'>
+          <li class='draggable' draggable="true"><a class='moveSymbol'> = </a><input type='checkbox' name='checkbox'><label for='checkbox'>Task 1</label><span> X </span></li>
+          <li class='draggable' draggable="true"><a class='moveSymbol'> = </a><input type='checkbox' name='checkbox'><label for='checkbox'>Task 2</label><span> X </span></li>
+          <li class='draggable' draggable="true"><a class='moveSymbol'> = </a><input type='checkbox' name='checkbox'><label for='checkbox'>Task 3</label><span> X </span></li>
+        </ul>
+      </section>
+</body>
+</html>
