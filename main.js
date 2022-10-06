@@ -42,13 +42,15 @@ document.getElementById('listname').addEventListener('click', deleteli);  // lis
 
 // removes specified task
 function deleteli(e) {
-  if (e.target == document.querySelector('span')) e.target.parentNode.remove(e);
+  if (e.target.tagName == "SPAN") e.target.parentNode.remove(e);
 }
 
 // MOVE AND DRAG FUNCTION
-function onDragStart(event) {
-  event.dataTransfer.setData('text/plain', event.target.id)
+function onDragStart(e) {
+  e.dataTransfer.setData('text/plain', e.target.id)
 }
+
+
 
 
 // EDIT ALREADY CREATED TASKS
