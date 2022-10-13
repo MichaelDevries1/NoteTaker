@@ -19,8 +19,8 @@ function newTask() {
   // findLongestTask();
 }
 
-
 // add a new item to the list
+var uid = 4
 function newItem() {
   var inputText = document.querySelector("input");      // Read input text from input box
   var item = inputText.value                            // new tasks name
@@ -30,27 +30,48 @@ function newItem() {
     return;
   }
   var createdList = document.querySelector("ul");       // find unordered list of tasks
-  var child = `<li><a class='moveSymbol'> = </a><input type='checkbox' name='checkbox'><label for='checkbox'>${item}</label><span> X </span></li>` // html to add a new item to the unordered list
-  var newChild = new DOMParser().parseFromString(child, "text/html")
+  // html to add a new item to the unordered list
+  var child = `<li class='draggable' id="${uid}" draggable="true" ondragstart="onDragStart(event);" ondragover="onDragOver(event);"> 
+  <a class='moveSymbol'> = </a> <input type='checkbox' name='checkbox'> <label for='checkbox'>${item}</label> <span> X </span> </li>` 
+  var newChild = new DOMParser().parseFromString(child, "text/html");
   createdList.appendChild(newChild.body.firstChild);    // find last list item, add new list item
+  uid += 1;
   inputText.value = "";                                 // erase text in input text box
 }
 
 
 // REMOVE AN ITEM FROM THE TASK LIST
-document.getElementById('listname').addEventListener('click', deleteli);  // listen for a click upon one of the X's following a task
+document.getElementById('listname').addEventListener('click', whatWasClicked);  // listen for a click upon one of the X's following a task
+
+
+// determine the action taken on the click
+function whatWasClicked(e) {
+  if (e.target.tagName == "SPAN") deleteli(e);
+  if (e.target.className == "moveSymbol") onDragStart(e);
+}
 
 // removes specified task
 function deleteli(e) {
-  if (e.target.tagName == "SPAN") e.target.parentNode.remove(e);
+  e.target.parentNode.remove(e);
 }
 
 // MOVE AND DRAG FUNCTION
+
+// Set dataTransfer object which tells the system what to target
 function onDragStart(e) {
-  e.dataTransfer.setData('text/plain', e.target.id)
+  e.dataTransfer.setData('text/plain', e.target.parentNode.id);
 }
 
+function onDragOver(e) {
+  e.preventDefault
+}
 
+function onDrop(e){
+  const idOfDraggedElement = e.dataTransfer.getData('text'); // gets the data from dataTransfer object and sets it to an id variable
+  const draggableElement = document.getElementById(idOfDraggedElement);
+
+
+}
 
 
 // EDIT ALREADY CREATED TASKS

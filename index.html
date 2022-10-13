@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>What ever this will be</title>
+    <title>TaskIt</title>
     <link rel="stylesheet" href="styles.css">
     <script defer src="main.js"></script>
 </head>
@@ -21,9 +21,36 @@
       <section>
         <!-- Unordered list -->
         <ul id='listname'>
-          <li class='draggable' draggable="true"><a class='moveSymbol'> = </a><input type='checkbox' name='checkbox'><label for='checkbox'>Task 1</label><span> X </span></li>
-          <li class='draggable' draggable="true"><a class='moveSymbol'> = </a><input type='checkbox' name='checkbox'><label for='checkbox'>Task 2</label><span> X </span></li>
-          <li class='draggable' draggable="true"><a class='moveSymbol'> = </a><input type='checkbox' name='checkbox'><label for='checkbox'>Task 3</label><span> X </span></li>
+          <li class='draggable' 
+            id="1"
+            draggable="true"
+            ondragstart="onDragStart(event);"
+            ondragover="onDragOver(event);">
+            <a class='moveSymbol'> = </a>
+            <input type='checkbox' name='checkbox'>
+            <label for='checkbox'>Task 1</label>
+            <span> X </span>
+          </li>
+          <li class='draggable' 
+            id="2"
+            draggable="true"
+            ondragstart="onDragStart(event);"
+            ondragover="onDragOver(event);">
+            <a class='moveSymbol'> = </a>
+            <input type='checkbox' name='checkbox'>
+            <label for='checkbox'>Task 2</label>
+            <span> X </span>
+          </li>
+          <li class='draggable' 
+            id="3"
+            draggable="true"
+            ondragstart="onDragStart(event);"
+            ondragover="onDragOver(event);">
+            <a class='moveSymbol'> = </a>
+            <input type='checkbox' name='checkbox'>
+            <label for='checkbox'>Task 3</label>
+            <span> X </span>
+          </li>
         </ul>
       </section>
 </body>
