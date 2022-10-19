@@ -1,38 +1,37 @@
 body {
-    font-family: Helvetica;
-    background-color: black;
-  }
-  
-  h1 {
-    color: red
-  }
-  
-  .moveSymbol {
-    color: white;
-    font-weight: bold;
-  }
-  
-  ul li span {
-    color: red;
-    font-weight: bold;
-  }
-  
-  .newTask {
-    color: white;
-    font: bold 36px;
-  }
-  
-  li {
-    list-style: none;
-    color: white;
-  }
-  
-  input:checked + label {
-    text-decoration: line-through
-  }
-  
-  .draggable {
-    
-    cursor: move;
-    user-select: none;
-  }
+  font-family: Helvetica;
+  background-color: black;
+}
+
+h1 {
+  color: red;
+}
+
+.moveSymbol {
+  color: white;
+  font-weight: bold;
+}
+
+ul li span {
+  color: red;
+  font-weight: bold;
+}
+
+.newTask {
+  color: white;
+  font: bold 36px;
+}
+
+li {
+  list-style: none;
+  color: white;
+}
+
+input:checked + label {
+  text-decoration: line-through;
+}
+
+.draggable {
+  cursor: move;
+  user-select: none;
+}
