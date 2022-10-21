@@ -64,6 +64,8 @@ let y = 0;
 let placeholder;
 let isDraggingStarted = false;
 
+document.addEventListener("mousedown", mouseDownHandler);
+
 const mouseDownHandler = function (e) {
   draggingEle = e.target.parentNode;
   console.log({draggingEle})
@@ -160,6 +162,7 @@ const swap = function (nodeA, nodeB) {
 
 // query out list
 const list = document.getElementById("listname");
+
 
 // query all items
 [].slice.call(list.querySelectorAll(".draggable")).forEach(function (item) {
