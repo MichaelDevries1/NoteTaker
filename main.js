@@ -53,7 +53,7 @@ function deleteli(e) {
   e.target.parentNode.remove(e);
 }
 
-// MOVE AND DRAG FUNCTION
+// ====================  MOVE AND DRAG FUNCTION  ====================
 // the current drag item
 let draggingEle;
 
@@ -64,12 +64,9 @@ let y = 0;
 let placeholder;
 let isDraggingStarted = false;
 
-document.addEventListener("mousedown", mouseDownHandler);
-
 const mouseDownHandler = function (e) {
   draggingEle = e.target.parentNode;
-  console.log({draggingEle})
-
+  
   // calculate the mouse position
   const rect = draggingEle.getBoundingClientRect();
   x = e.pageX - rect.left;
@@ -83,8 +80,8 @@ const mouseDownHandler = function (e) {
 const mouseMoveHandler = function (e) {
   // set postion for dragging element
   draggingEle.style.postion = "absolute";
-  draggingEle.style.left = "${e.pageX - x}px";
-  draggingEle.style.top = "${e.pageY - y}px";
+  draggingEle.style.left = `${e.pageX - x}px`;
+  draggingEle.style.top = `${e.pageY - y}px`;
 
   const draggingRect = draggingEle.getBoundingClientRect();
 
@@ -94,7 +91,8 @@ const mouseMoveHandler = function (e) {
 
     // Let the placeholder take the height of dragging element
     // So the next element won't move up
-    placeholder = document.createElement('div');
+    placeholder = document.createElement('li');
+    console.log(placeholder);
     placeholder.classList.add('placeholder');
     draggingEle.parentNode.insertBefore(
       placeholder, draggingEle.nextSibling
@@ -160,14 +158,15 @@ const swap = function (nodeA, nodeB) {
   parentA.insertBefore(nodeB, siblingA);
 }
 
-// query out list
-const list = document.getElementById("listname");
+document.addEventListener("mousedown", mouseDownHandler);
 
+// query out list
+// const list = document.getElementById("listname");
 
 // query all items
-[].slice.call(list.querySelectorAll(".draggable")).forEach(function (item) {
-  item.addEventListener("mousedown", mouseDownHandler);
-});
+// [].slice.call(list.querySelectorAll(".draggable")).forEach(function (item) {
+//   item.addEventListener("mousedown", mouseDownHandler);
+// });
 
 
 // EDIT ALREADY CREATED TASKS
