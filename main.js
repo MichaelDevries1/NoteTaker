@@ -32,8 +32,9 @@ function newItem() {
   }
   var createdList = document.querySelector("ul"); // find unordered list of tasks
   // html to add a new item to the unordered list
-  var child = `<li class='draggable' id="${uid}" draggable="true" ondragstart="onDragStart(event);" ondragover="onDragOver(event);"> 
-  <a class='moveSymbol'> = </a> <input type='checkbox' name='checkbox'> <label for='checkbox'>${item}</label> <span> X </span> </li>`;
+  
+  var child = `<li class='draggable' id="${uid}" draggable="true"><a class='moveSymbol'> = </a>
+  <input type='checkbox' name='checkbox'><label for='checkbox'>${item}</label><span> X </span></li>`;
   var newChild = new DOMParser().parseFromString(child, "text/html");
   createdList.appendChild(newChild.body.firstChild); // find last list item, add new list item
   uid += 1;
@@ -89,26 +90,26 @@ const mouseMoveHandler = function (e) {
     // update the flag
     isDraggingStarted = true;
 
+    // Remember the tasks above and below the target element
+    const prevEle = draggingEle.previousElementSibling;
+    const nextEle = draggingEle.nextElementSibling;
+
     // Let the placeholder take the height of dragging element
     // So the next element won't move up
     placeholder = document.createElement('li');
-    console.log(placeholder);
     placeholder.classList.add('placeholder');
     draggingEle.parentNode.insertBefore(
       placeholder, draggingEle.nextSibling
     );
 
     // Set the placeholder's height
-    placeholder.style.height = '${draggingRect.height}px';
-
-    const prevEle = draggingEle.previousElementSibling;
-    const nextEle = draggingEle.nextelementSibling;
+    placeholder.style.height = `${draggingRect.height}px`;
 
     // user moves item to the top
-    if (prevEle && isAbove(draggingEle, prevEle)) {
+    if (prevEle && isAbove(draggingEle, prevEle)) { 
       swap(placeholder, draggingEle);
       swap(placeholder, prevEle);
-      return;
+      // return;
     }
 
     // user moves the dragging element to the bottom
@@ -120,23 +121,23 @@ const mouseMoveHandler = function (e) {
 };
 
 const mouseUpHandler = function () {
+  // remove the placeholder
+  placeholder && placeholder.parentNode.removeChild(placeholder);
+
   // remove the position styles
-  draggingEle.style.removeProperty("top");
+  draggingEle.style.removeProperty('top');
   draggingEle.style.removeProperty("left");
   draggingEle.style.removeProperty("postition");
 
+  // reset the variables
   x = null;
   y = null;
   draggingEle = null;
+  isDraggingStarted = false;
 
   // remove listeners
   document.removeEventListener("mousemove", mouseMoveHandler);
   document.removeEventListener("mouseup", mouseUpHandler);
-
-  // remove the placeholder
-  placeholder && placeholder.parentNode.removeChild(placeholder);
-  // reset the flag
-  isDraggingStarted = false;
 };
 
 const isAbove = function (nodeA, nodeB) {
@@ -148,7 +149,9 @@ const isAbove = function (nodeA, nodeB) {
 }
 
 const swap = function (nodeA, nodeB) {
+  console.log(nodeA, nodeB);
   const parentA = nodeA.parentNode;
+  console.log(parentA);
   const siblingA = nodeA.nextSibling === nodeB ? nodeA : nodeA.nextSibling;
 
   // move 'nodeA' to before the 'nodeB'
